@@ -22,7 +22,7 @@ const tattoistData = [
     picture: "/images/profile-pictures/1.jpg",
     fullName: "Jean-Michel Apeuprès",
     adress: "40 rue du Colisée",
-    description:"I am an incredible tattoist. I trainded alot on Filippo's back and draw all the plan of it's jail and guess what!? he escaped! " ,
+    description:"I am an incredible tattoist. I trainded alot on Filippo's back and draw all the plan of his jail and guess what!? he escaped! " ,
     portfolio: [
       "/images/tattoist-portfolio-images/1.jpg",
       "/images/tattoist-portfolio-images/2.jpg",
