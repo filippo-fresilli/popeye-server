@@ -4,9 +4,9 @@ const tatooMakerSchema = new Schema(
   {
     picture: String,
     fullName: String,
-    adress: String,
+    adress: { type: String, coordinate: [Number] },
     description: String,
-    portfolio: Array
+    portfolio: [String]
   },
   {
     timestamps: true
