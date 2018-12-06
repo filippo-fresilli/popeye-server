@@ -1,16 +1,16 @@
 require("dotenv").config();
 
 const mongoose = require("mongoose");
-const tattoist = require("../models/tatoo-maker.js");
+const tattoist = require("../models/tatoo-maker-model.js");
 
 mongoose
   .connect(
-    process.env.MONGODB_URI,
+    "mongodb://localhost/popeye-server",
     { useNewUrlParser: true }
   )
   .then(x => {
     console.log(
-      `Connected to Mongo! Database name: "${x.connections[0].FullName}"`
+      `Connected to Mongo! Database name: "${x.connections[0].name}"`
     );
   })
   .catch(err => {

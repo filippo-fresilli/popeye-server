@@ -14,9 +14,9 @@ const clientSchema = new Schema(
       minlength: 2
     },
     surname: String,
-    encryptedPassword: { 
-      type: String, 
-      required: true 
+    encryptedPassword: {
+      type: String,
+      required: true
     },
     phoneNumber: Number
   },
