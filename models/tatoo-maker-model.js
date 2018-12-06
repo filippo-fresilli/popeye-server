@@ -5,6 +5,11 @@ const tatooMakerSchema = new Schema(
     picture: String,
     fullName: String,
     adress: { type: String, coordinate: [Number] },
+    city:{ type: String},
+    appointement: {
+      type: Schema.Types.ObjectId,
+      ref: "Appointment", 
+    },
     description: String,
     portfolio: [String]
   },
