@@ -3,8 +3,15 @@ const Schema = mongoose.Schema;
 const tatooMakerSchema = new Schema(
   {
     picture: String,
-    fullName: String,
-    adress: { type: String, coordinate: [Number] },
+    fullName: {
+      type: String,
+      required: true,
+      minlength: 2
+    },
+    adress: { 
+      type: String, 
+      coordinate: [Number] 
+    },
     description: String,
     portfolio: [String]
   },
