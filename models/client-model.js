@@ -2,10 +2,22 @@ const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
 const clientSchema = new Schema(
   {
-    email: String,
-    name: String,
+    email: {
+      type: String,
+      required: true,
+      unique: true,
+      match: /^.+@.+\..+$/
+    },
+    name: {
+      type: String,
+      required: true,
+      minlength: 2
+    },
     surname: String,
-    encryptetdPassword: String,
+    encryptedPassword: { 
+      type: String, 
+      required: true 
+    },
     phoneNumber: Number
   },
   {

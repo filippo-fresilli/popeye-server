@@ -45,6 +45,7 @@ router.post("/login", (req, res, next) => {
 
       // check the password
       const { encryptedPassword } = userDoc;
+      console.log(originalPassword,  encryptedPassword);
       // "compareSync()" will return FALSE if "originalPassword" is WRONG
       if (!bcrypt.compareSync(originalPassword, encryptedPassword)) {
         // "req.flash()" is defined by "connect-flash"
