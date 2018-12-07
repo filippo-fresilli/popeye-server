@@ -6,8 +6,7 @@ const Schema = mongoose.Schema;
 const GeoSchema = new Schema({
   type: { type: String, default: "Point" },
   coordinates: {
-    type: [Number],
-    index:"2dsphere"
+    type: [Number]
   }
 });
 const tatooMakerSchema = new Schema(
@@ -29,12 +28,15 @@ const tatooMakerSchema = new Schema(
     },
     description: String,
     portfolio: [String],
-    geometry: GeoSchema
-    
+    geometry: {
+      type: GeoSchema,
+      index: "2dsphere"
+    }
   },
   {
     timestamps: true
   }
 );
+
 const TatooMaker = mongoose.model("TatooMaker", tatooMakerSchema);
 module.exports = TatooMaker;
