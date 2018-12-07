@@ -10,7 +10,7 @@ const transport = nodemailer.createTransport({
 // setup for confirmation email:
 function sendSignupMail(name, email){
   return transport.sendMail({
-  from:"Christmas Generator <northpoleworkshopelves@gmail.com>",
+  from:"Popeye <mypopeyetatoo@gmail.com>",
   to:`${name} <${email}>`,
   subject:`Hello ${name}, welcome to Popeye platform!`,
   text:"You succefully signed up.",
