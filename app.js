@@ -60,7 +60,7 @@ app.use(passport.session());
 const authRouter = require("./routes/auth-router.js");
 app.use("/api", authRouter);
 
-const tatooRouter = require("./routes/tatoo-router.js");
-app.use("/api", tatooRouter);
+const tatooRouther = require("./routes/tatoo-router.js");
+app.use("/api", tatooRouther);
 
 module.exports = app;

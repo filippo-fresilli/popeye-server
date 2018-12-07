@@ -36,7 +36,7 @@ const tattoistData = [
   },
 
   {
-    picture: "//images/profile-pictures/2.jpg",
+    picture: "/images/profile-pictures/2.jpg",
     fullName: "Roger Rabbit",
     adress: "100 avenue Victor Hugo",
     city: "Paris",

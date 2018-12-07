@@ -8,15 +8,14 @@ const tatooMakerSchema = new Schema(
       required: true,
       minlength: 2
     },
-    adress: {
-      type: String,
-      coordinate: [Number]
+    adress: { 
+      type: String, 
+      coordinate: [Number] 
     },
-    city: { type: String },
+    city:{ type: String},
     appointement: {
       type: Schema.Types.ObjectId,
-      ref: "Appointment"
-    },
+      ref: "Appointment" },
     description: String,
     portfolio: [String]
   },
