@@ -18,9 +18,11 @@ router.post("/signup", (req, res, next) => {
   // encrypt the submitted password before saving
   const encryptedPassword = bcrypt.hashSync(originalPassword, 10);
 
+  // the Client.create results in userDoc 
   Client.create({ email, name, surname, encryptedPassword, phoneNumber })
     .then(userDoc => {
-      sendSignupMail(userDoc)
+      // function to send email
+      sendSignupMail(userDoc.name, userDoc.email)
         .then(() => {
           req.logIn(userDoc, () => {
             // hide "encryptedPassword" before sending the JSON (it's a security risk)
