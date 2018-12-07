@@ -1,5 +1,15 @@
 const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
+
+//GelolocationSchema
+
+const GeoSchema = new Schema({
+  type: { type: String, default: "Point" },
+  coordinates: {
+    type: [Number],
+    index:"2dsphere"
+  }
+});
 const tatooMakerSchema = new Schema(
   {
     picture: String,
@@ -11,14 +21,16 @@ const tatooMakerSchema = new Schema(
     adress: {
       type: String
     },
-    coordinate: [Number],
+    // coordinate: [Number],
     city: { type: String },
     appointement: {
       type: Schema.Types.ObjectId,
       ref: "Appointment"
     },
     description: String,
-    portfolio: [String]
+    portfolio: [String],
+    geometry: GeoSchema
+    
   },
   {
     timestamps: true
