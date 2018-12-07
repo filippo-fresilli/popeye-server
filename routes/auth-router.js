@@ -2,6 +2,7 @@ const express = require("express");
 const bcrypt = require("bcrypt");
 
 const Client = require("../models/client-model.js");
+const { sendSignupMail } = require("../config/nodemailer-setup.js");
 
 const router = express.Router();
 
@@ -19,15 +20,18 @@ router.post("/signup", (req, res, next) => {
 
   Client.create({ email, name, surname, encryptedPassword, phoneNumber })
     .then(userDoc => {
-      req.logIn(userDoc, () => {
-        // hide "encryptedPassword" before sending the JSON (it's a security risk)
-        userDoc.encryptedPassword = undefined;
-        res.json({ userDoc });
-      });
+      sendSignupMail(userDoc)
+        .then(() => {
+          req.logIn(userDoc, () => {
+            // hide "encryptedPassword" before sending the JSON (it's a security risk)
+            userDoc.encryptedPassword = undefined;
+            res.json({ userDoc });
+          });
+        })
+        .catch(err => next(err));
     })
     .catch(err => next(err));
 });
-
 
 router.post("/login", (req, res, next) => {
   const { email, originalPassword } = req.body;
@@ -45,7 +49,7 @@ router.post("/login", (req, res, next) => {
 
       // check the password
       const { encryptedPassword } = userDoc;
-      console.log(originalPassword,  encryptedPassword);
+      console.log(originalPassword, encryptedPassword);
       // "compareSync()" will return FALSE if "originalPassword" is WRONG
       if (!bcrypt.compareSync(originalPassword, encryptedPassword)) {
         // "req.flash()" is defined by "connect-flash"
@@ -64,6 +68,10 @@ router.post("/login", (req, res, next) => {
     .catch(err => next(err));
 });
 
+// router.post('/send-email', (req, res, next) => {
+//   let { email, subject, message } = req.body;
+//   res.render('message', { email, subject, message })
+// });
 
 router.delete("/logout", (req, res, next) => {
   // "req.logOut()" is a Passport method that removes the user ID from session
