@@ -9,6 +9,7 @@ const GeoSchema = new Schema({
     type: [Number]
   }
 });
+
 const tatooMakerSchema = new Schema(
   {
     picture: String,

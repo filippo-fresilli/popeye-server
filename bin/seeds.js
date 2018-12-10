@@ -23,7 +23,7 @@ const tattoistData = [
     fullName: "Jean-Michel Apeuprès",
     adress: "40 rue du Colisée",
     city: "Paris",
-    geometry: { type: "Point", coordinates: [2.311104, 48.871778899999995] },
+    geometry: { type: "Point", coordinates: [2.3110797, 48.871747] },
     description:
       "I am an incredible tattoist. I trainded alot on Filippo's back and draw all the plan of his jail and guess what!? he escaped! ",
     portfolio: [
@@ -74,7 +74,7 @@ const tattoistData = [
     fullName: "Jean-Patrick Blah",
     adress: "14 rue du Parc Royal ",
     city: "Paris",
-    geometry: { type: "Point", coordinates: [2.3626663000000008, 48.8588022] },
+    geometry: { type: "Point", coordinates: [2.3626663000000008, 48.8740418] },
     description:
       "My signature watercolor-inspired pieces look like they belong in a museum. ",
     portfolio: [
@@ -91,7 +91,7 @@ const tattoistData = [
     fullName: "Pascal Ladale",
     adress: "12 rue de Tolbiac",
     city: "Paris",
-    geometry: { type: "Point", coordinates: [2.3750949999999875, 48.8298024] },
+    geometry: { type: "Point", coordinates: [2.3364444999999705, 48.8740418] },
     description:
       "Paris-based and have  inked the likes of Robert Downey Jr. and Courtney Love. ",
     portfolio: [
