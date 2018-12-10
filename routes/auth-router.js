@@ -2,10 +2,13 @@ const express = require("express");
 const bcrypt = require("bcrypt");
 
 const Client = require("../models/client-model.js");
+const TatooMaker = require("../models/tatoo-maker-model.js")
 const { sendSignupMail } = require("../config/nodemailer-setup.js");
 
 const router = express.Router();
 
+
+//------ Signup client -------------------------------------------------------------
 router.post("/signup", (req, res, next) => {
   const { email, name, surname, originalPassword, phoneNumber } = req.body;
 
@@ -32,9 +35,41 @@ router.post("/signup", (req, res, next) => {
         })
         .catch(err => next(err));
     })
-    .catch(err => next(err));
+    .catch(err => next(err))
 });
 
+//------ Signup tattoist -------------------------------------------------------------
+router.post("/tattoist-signup", (req, res, next) => {
+  const { email, fullName, city, originalPassword, phoneNumber } = req.body;
+
+  if (!originalPassword || originalPassword.match(/[0-9]/) === null) {
+    // show error JSON if password is empty or doesn't have a number
+    next(new Error("Incorrect password."));
+    return; // use "return" instead of a big else
+  }
+
+  // encrypt the submitted password before saving
+  const encryptedPassword = bcrypt.hashSync(originalPassword, 10);
+
+  // the Client.create results in userDoc 
+  TatooMaker.create({ email, fullName, city, encryptedPassword, phoneNumber })
+    .then(userDoc => {
+      console.log("yoooooooooooouuuuuuuuserdocx ",userDoc)
+      // function to send email
+      sendSignupMail(userDoc.fullName, userDoc.email)
+        .then(() => {
+          req.logIn(userDoc, () => {
+            // hide "encryptedPassword" before sending the JSON (it's a security risk)
+            userDoc.encryptedPassword = undefined;
+            res.json({ userDoc });
+          });
+        })
+        .catch(err => next(err));
+    })
+    .catch(err => next(err))
+});
+
+//------ Login client -------------------------------------------------------------
 router.post("/login", (req, res, next) => {
   const { email, originalPassword } = req.body;
 
