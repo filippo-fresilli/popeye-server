@@ -3,7 +3,8 @@ const Schema = mongoose.Schema;
 
 //GelolocationSchema
 
-const GeoSchema = new Schema({
+const GeoSchema = new Schema(
+  {
   type: { type: String, default: "Point" },
   coordinates: {
     type: [Number]
@@ -17,11 +18,20 @@ const tatooMakerSchema = new Schema(
       required: true,
       minlength: 2
     },
+    email: {
+      type: String,
+      required: true,
+      unique: true,
+      match: /^.+@.+\..+$/
+    },
     adress: {
       type: String
     },
     // coordinate: [Number],
-    city: { type: String },
+    city: { 
+      type: String, 
+      required: true 
+    },
     appointement: {
       type: Schema.Types.ObjectId,
       ref: "Appointment"
@@ -31,7 +41,8 @@ const tatooMakerSchema = new Schema(
     geometry: {
       type: GeoSchema,
       index: "2dsphere"
-    }
+    },
+    phoneNumber: Number
   },
   {
     timestamps: true
