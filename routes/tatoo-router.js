@@ -3,6 +3,7 @@ const TatooMaker = require("../models/tatoo-maker-model");
 const router = express.Router();
 
 //Get /tattoistList -Retrieve the list of Tattoist
+
 router.get("/tattoistList", (req, res, next) => {
   const { city } = req.body;
   TatooMaker.find({ city: { $eq: city } })

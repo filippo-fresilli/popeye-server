@@ -20,6 +20,7 @@ mongoose
 const tattoistData = [
   {
     picture: "/images/profile-pictures/1.jpg",
+    email: "hey64@hey.com",
     fullName: "Jean-Michel Apeuprès",
     adress: "40 rue du Colisée",
     city: "Paris",
@@ -38,6 +39,7 @@ const tattoistData = [
   {
     picture: "/images/profile-pictures/2.jpg",
     fullName: "Roger Rabbit",
+    email: "hey1@hey.com",
     adress: "100 avenue Victor Hugo",
     city: "Paris",
     geometry: { type: "Point", coordinates: [2.2829811999999947, 48.8688963] },
@@ -55,6 +57,7 @@ const tattoistData = [
   {
     picture: "/images/profile-pictures/3.png",
     fullName: "Francis Lenorman",
+    email: "hey3@hey.com",
     adress: "17 rue Lafayette",
     city: "Paris",
     geometry: { type: "Point", coordinates: [2.3364444999999705, 48.8740418] },
@@ -73,6 +76,7 @@ const tattoistData = [
     picture: "/images/profile-pictures/4.jpeg",
     fullName: "Jean-Patrick Blah",
     adress: "14 rue du Parc Royal ",
+    email: "hey4@hey.com",
     city: "Paris",
     geometry: { type: "Point", coordinates: [2.3626663000000008, 48.8740418] },
     description:
@@ -90,6 +94,7 @@ const tattoistData = [
     picture: "/images/profile-pictures/5.jpg",
     fullName: "Pascal Ladale",
     adress: "12 rue de Tolbiac",
+    email: "hey5@hey.com",
     city: "Paris",
     geometry: { type: "Point", coordinates: [2.3364444999999705, 48.8740418] },
     description:
@@ -107,6 +112,8 @@ const tattoistData = [
     picture: "/images/profile-pictures/6.jpg",
     fullName: "Eleonor Marolex",
     adress: "20 avenue Niel",
+    city: "Paris",
+    email: "hey6@hey.com",
     geometry: {
       type: "Point",
       coordinates: [2.2957234000000426, 48.88080550000001]
@@ -126,6 +133,7 @@ const tattoistData = [
     picture: "/images/profile-pictures/7.jpg",
     fullName: "Justine Titegoutte",
     adress: "8 rue de Didot",
+    email: "hey7@hey.com",
     city: "Paris",
     geometry: { type: "Point", coordinates: [2.3212078999999903, 48.8335874] },
     description:
@@ -141,6 +149,7 @@ const tattoistData = [
 
   {
     picture: "/images/profile-pictures/8.jpg",
+    email: "hey8@hey.com",
     fullName: "René Lataupe",
     adress: "2 rue de Pommard",
     city: "Paris",
@@ -162,4 +171,4 @@ tattoist
   .then(response => {
     console.log("It works");
   })
-  .catch(err => next(err));
+  .catch(err => console.log(err));
