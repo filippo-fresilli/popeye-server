@@ -20,10 +20,11 @@ mongoose
 const tattoistData = [
   {
     picture: "/images/profile-pictures/1.jpg",
+    email: "hey64@hey.com",
     fullName: "Jean-Michel Apeuprès",
     adress: "40 rue du Colisée",
     city: "Paris",
-    coordinate: [48.871778899999995, 2.311104],
+    geometry: { type: "Point", coordinates: [2.3110797, 48.871747] },
     description:
       "I am an incredible tattoist. I trainded alot on Filippo's back and draw all the plan of his jail and guess what!? he escaped! ",
     portfolio: [
@@ -38,9 +39,10 @@ const tattoistData = [
   {
     picture: "/images/profile-pictures/2.jpg",
     fullName: "Roger Rabbit",
+    email: "hey1@hey.com",
     adress: "100 avenue Victor Hugo",
     city: "Paris",
-    coordinate: [48.8688963, 2.2829811999999947],
+    geometry: { type: "Point", coordinates: [2.2829811999999947, 48.8688963] },
     description:
       "Specialized in colorful, geometric pieces that she's expanded into temporary tattoos, pins and other merch. ",
     portfolio: [
@@ -55,9 +57,10 @@ const tattoistData = [
   {
     picture: "/images/profile-pictures/3.png",
     fullName: "Francis Lenorman",
+    email: "hey3@hey.com",
     adress: "17 rue Lafayette",
     city: "Paris",
-    coordinate: [48.8740418, 2.3364444999999705],
+    geometry: { type: "Point", coordinates: [2.3364444999999705, 48.8740418] },
     description:
       "My beautiful graphic, all-black pieces evoke the mystery and seduction of film noir ",
     portfolio: [
@@ -73,8 +76,9 @@ const tattoistData = [
     picture: "/images/profile-pictures/4.jpeg",
     fullName: "Jean-Patrick Blah",
     adress: "14 rue du Parc Royal ",
+    email: "hey4@hey.com",
     city: "Paris",
-    coordinate: [48.8588022, 2.3626663000000008],
+    geometry: { type: "Point", coordinates: [2.3626663000000008, 48.8740418] },
     description:
       "My signature watercolor-inspired pieces look like they belong in a museum. ",
     portfolio: [
@@ -90,8 +94,9 @@ const tattoistData = [
     picture: "/images/profile-pictures/5.jpg",
     fullName: "Pascal Ladale",
     adress: "12 rue de Tolbiac",
+    email: "hey5@hey.com",
     city: "Paris",
-    coordinate: [48.8298024, 2.3750949999999875],
+    geometry: { type: "Point", coordinates: [2.3364444999999705, 48.8740418] },
     description:
       "Paris-based and have  inked the likes of Robert Downey Jr. and Courtney Love. ",
     portfolio: [
@@ -107,7 +112,12 @@ const tattoistData = [
     picture: "/images/profile-pictures/6.jpg",
     fullName: "Eleonor Marolex",
     adress: "20 avenue Niel",
-    coordinate: [48.88080550000001, 2.2957234000000426],
+    city: "Paris",
+    email: "hey6@hey.com",
+    geometry: {
+      type: "Point",
+      coordinates: [2.2957234000000426, 48.88080550000001]
+    },
     description:
       " I have amassed a massive following thanks to my girly tattoos of colorful cartoon characters and vibrant floral arrangements. ",
     portfolio: [
@@ -123,8 +133,9 @@ const tattoistData = [
     picture: "/images/profile-pictures/7.jpg",
     fullName: "Justine Titegoutte",
     adress: "8 rue de Didot",
+    email: "hey7@hey.com",
     city: "Paris",
-    coordinate: [48.8335874, 2.3212078999999903],
+    geometry: { type: "Point", coordinates: [2.3212078999999903, 48.8335874] },
     description:
       "I'm one of the most in-demand tattoo artists in Paris. He's inked the likes of Drake (famously, a prayer hand emoji) and Rihanna. According to the New York Times, his signature is a grouping of circles, arrows and dots, which fans have dubbed 'Woo arrows.' ",
     portfolio: [
@@ -138,10 +149,11 @@ const tattoistData = [
 
   {
     picture: "/images/profile-pictures/8.jpg",
+    email: "hey8@hey.com",
     fullName: "René Lataupe",
     adress: "2 rue de Pommard",
     city: "Paris",
-    coordinate: [48.8355519, 2.3853696999999556],
+    geometry: { type: "Point", coordinates: [2.3853696999999556, 48.8355519] },
     description:
       "I am an incredible tattoist. I trained alot on Filippo's back and draw all the plan of it's jail and guess what!? he escaped! ",
     portfolio: [
@@ -159,4 +171,4 @@ tattoist
   .then(response => {
     console.log("It works");
   })
-  .catch(err => next(err));
+  .catch(err => console.log(err));
