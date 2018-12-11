@@ -16,7 +16,7 @@ const clientSchema = new Schema(
     surname: String,
     encryptedPassword: {
       type: String,
-      required: true
+  
     },
     phoneNumber: Number
   },

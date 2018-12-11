@@ -1,7 +1,8 @@
-const express = require("express");
-const bcrypt = require("bcrypt");
+const express    = require("express");
+const bcrypt     = require("bcrypt");
+const passport   = require("passport");
 
-const Client = require("../models/client-model.js");
+const Client     = require("../models/client-model.js");
 const TatooMaker = require("../models/tatoo-maker-model.js")
 const { sendSignupMail } = require("../config/nodemailer-setup.js");
 
@@ -38,6 +39,30 @@ router.post("/signup", (req, res, next) => {
     .catch(err => next(err))
 });
 
+//------ Signup client with Google --------------------
+
+router.post("/google/google-signup", (req, res, next) => {
+  const { email, name, surname } = req.body;
+
+
+  // the Client.create results in userDoc 
+  Client.create({ email, name, surname })
+    .then(userDoc => {
+      // function to send email
+      sendSignupMail(userDoc.name, userDoc.email)
+        .then(() => {
+          req.logIn(userDoc, () => {
+            // hide "encryptedPassword" before sending the JSON (it's a security risk)
+            userDoc.encryptedPassword = undefined;
+            res.json({ userDoc });
+          });
+        })
+        .catch(err => next(err));
+    })
+    .catch(err => next(err))
+});
+
+
 //------ Signup tattoist -------------------------------------------------------------
 router.post("/tattoist-signup", (req, res, next) => {
   const { email, fullName, city, originalPassword, phoneNumber } = req.body;
@@ -54,7 +79,6 @@ router.post("/tattoist-signup", (req, res, next) => {
   // the Client.create results in userDoc 
   TatooMaker.create({ email, fullName, city, encryptedPassword, phoneNumber })
     .then(userDoc => {
-      console.log("yoooooooooooouuuuuuuuserdocx ",userDoc)
       // function to send email
       sendSignupMail(userDoc.fullName, userDoc.email)
         .then(() => {
