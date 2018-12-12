@@ -44,6 +44,10 @@ const tatooMakerSchema = new Schema(
       type: GeoSchema,
       index: "2dsphere"
     },
+    encryptedPassword: {
+      type: String,
+  
+    },
     phoneNumber: Number
   },
   {
