@@ -7,12 +7,14 @@ const appointmentSchema = new Schema(
     clientId: {
       type: Schema.Types.ObjectId,
       ref: "Client", 
-      required: true,
     },
     tattoistId: {
       type: Schema.Types.ObjectId,
       ref: "TatooMaker", 
       required: true,
+    },
+    title: {
+      type:String
     }
   },
   {
