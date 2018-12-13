@@ -65,7 +65,7 @@ router.post("/google/google-signup", (req, res, next) => {
 
 //------ Signup tattoist -------------------------------------------------------------
 router.post("/tattoist-signup", (req, res, next) => {
-  const { email, fullName, city, originalPassword, phoneNumber } = req.body;
+  const { email, fullName, city, originalPassword, phoneNumber, coordinates } = req.body;
 
   if (!originalPassword || originalPassword.match(/[0-9]/) === null) {
     // show error JSON if password is empty or doesn't have a number
@@ -75,9 +75,10 @@ router.post("/tattoist-signup", (req, res, next) => {
 
   // encrypt the submitted password before saving
   const encryptedPassword = bcrypt.hashSync(originalPassword, 10);
+  const geometry = { coordinates };
 
   // the Client.create results in userDoc 
-  TatooMaker.create({ email, fullName, city, encryptedPassword, phoneNumber })
+  TatooMaker.create({ email, fullName, city, encryptedPassword, phoneNumber, geometry })
     .then(userDoc => {
       // function to send email
       sendSignupMail(userDoc.fullName, userDoc.email)

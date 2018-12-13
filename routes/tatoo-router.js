@@ -16,12 +16,12 @@ router.get("/tattoistList", (req, res, next) => {
 router.get("/tattoistList/:id", (req, res, next) => {
   const { id } = req.params;
   console.log(id);
-  TatooMaker.findById(id)
-    .then(tatooMakerResults => {
-      console.log(tatooMakerResults);
-      res.json(tatooMakerResults);
-    })
-    .catch(err => next(err));
+  // TatooMaker.findById(id)
+  //   .then(tatooMakerResults => {
+  //     console.log(tatooMakerResults);
+  //     res.json(tatooMakerResults);
+  //   })
+  //   .catch(err => next(err));
 });
 router.get("/tattoist/:id", (req, res, next) => {
   const { id } = req.params;
