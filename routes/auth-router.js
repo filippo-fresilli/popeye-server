@@ -129,10 +129,6 @@ router.post("/login", (req, res, next) => {
     .catch(err => next(err));
 });
 
-// router.post('/send-email', (req, res, next) => {
-//   let { email, subject, message } = req.body;
-//   res.render('message', { email, subject, message })
-// });
 
 router.delete("/logout", (req, res, next) => {
   // "req.logOut()" is a Passport method that removes the user ID from session
@@ -146,6 +142,65 @@ router.delete("/logout", (req, res, next) => {
 // (a) if we are logged-in
 // (b) what are the details of the logged-in user
 router.get("/checkuser", (req, res, next) => {
+  if (req.user) {
+    req.user.encryptedPassword = undefined;
+    res.json({ userDoc: req.user });
+  } else {
+    res.json({ userDoc: null });
+  }
+});
+
+//------ Login Tattoist -------------------------------------------------------------
+router.post("/tattoist-login", (req, res, next) => {
+  const { email, originalPassword } = req.body;
+
+  // search the database for a user with that email
+  TatooMaker.findOne({ email: { $eq: email } })
+    .then(userDoc => {
+      console.log(userDoc);
+      // "userDoc" will be empty if the email is wrong
+      if (!userDoc) {
+        // "req.flash()" is defined by the "connect-flash" npm package
+        // (2 arguments: message type and message text)
+        next(new Error("Incorrect email. 🤦‍♂️"));
+        return; // use "return" instead of a big else
+      }
+
+      // check the password
+      const { encryptedPassword } = userDoc;
+      console.log(originalPassword, encryptedPassword);
+      // "compareSync()" will return FALSE if "originalPassword" is WRONG
+      if (!bcrypt.compareSync(originalPassword, encryptedPassword)) {
+        // "req.flash()" is defined by "connect-flash"
+        // (2 arguments: message type and message text)
+        next(new Error("Incorrect password. 🤯"));
+      } else {
+        // "req.logIn()" is a Passport method that calls "serializeUser()"
+        // (that saves the USER ID in the session)
+        req.logIn(userDoc, () => {
+          console.log("333333", userDoc)
+          // hide "encryptedPassword"
+          userDoc.encryptedPassword = undefined;
+          res.json({ userDoc });
+        });
+      }
+    })
+    .catch(err => next(err));
+});
+
+
+router.delete("/tattoist-logout", (req, res, next) => {
+  // "req.logOut()" is a Passport method that removes the user ID from session
+  req.logOut();
+
+  // send empty "userDoc" when you log out
+  res.json({ userDoc: null });
+});
+
+// allows the client to check to see:
+// (a) if we are logged-in
+// (b) what are the details of the logged-in user
+router.get("/checkTattoist", (req, res, next) => {
   if (req.user) {
     req.user.encryptedPassword = undefined;
     res.json({ userDoc: req.user });
