@@ -42,7 +42,8 @@ const tatooMakerSchema = new Schema(
     portfolio: [String],
     geometry: {
       type: GeoSchema,
-      index: "2dsphere"
+      index: "2dsphere",
+      required: true
     },
     encryptedPassword: {
       type: String,
