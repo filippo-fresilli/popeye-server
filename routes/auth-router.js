@@ -111,7 +111,6 @@ router.post("/login", (req, res, next) => {
 
       // check the password
       const { encryptedPassword } = userDoc;
-      console.log(originalPassword, encryptedPassword);
       // "compareSync()" will return FALSE if "originalPassword" is WRONG
       if (!bcrypt.compareSync(originalPassword, encryptedPassword)) {
         // "req.flash()" is defined by "connect-flash"
@@ -158,7 +157,6 @@ router.post("/tattoist-login", (req, res, next) => {
   // search the database for a user with that email
   TatooMaker.findOne({ email: { $eq: email } })
     .then(userDoc => {
-      console.log(userDoc);
       // "userDoc" will be empty if the email is wrong
       if (!userDoc) {
         // "req.flash()" is defined by the "connect-flash" npm package
@@ -169,7 +167,7 @@ router.post("/tattoist-login", (req, res, next) => {
 
       // check the password
       const { encryptedPassword } = userDoc;
-      console.log(originalPassword, encryptedPassword);
+
       // "compareSync()" will return FALSE if "originalPassword" is WRONG
       if (!bcrypt.compareSync(originalPassword, encryptedPassword)) {
         // "req.flash()" is defined by "connect-flash"
@@ -178,8 +176,7 @@ router.post("/tattoist-login", (req, res, next) => {
       } else {
         // "req.logIn()" is a Passport method that calls "serializeUser()"
         // (that saves the USER ID in the session)
-        req.logIn(userDoc, () => {
-          console.log("333333", userDoc)
+        req.logIn(userDoc, (err) => {
           // hide "encryptedPassword"
           userDoc.encryptedPassword = undefined;
           res.json({ userDoc });
