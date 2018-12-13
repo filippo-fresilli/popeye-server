@@ -1,4 +1,5 @@
 const mongoose = require("mongoose");
+const Appointement = require('./appointment-model.js');
 const Schema = mongoose.Schema;
 
 //GelolocationSchema
@@ -33,15 +34,16 @@ const tatooMakerSchema = new Schema(
       type: String, 
       required: true 
     },
-    appointement: {
+    appointement: [{
       type: Schema.Types.ObjectId,
       ref: "Appointment"
-    },
+    }],
     description: String,
     portfolio: [String],
     geometry: {
       type: GeoSchema,
-      index: "2dsphere"
+      index: "2dsphere",
+      required: true
     },
     encryptedPassword: {
       type: String,
