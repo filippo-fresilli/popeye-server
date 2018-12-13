@@ -56,7 +56,10 @@ router.post("/eventcreated/:tattoistId", (req, res,next)=>{
   }
 
   Appointment.create({startDate, endDate,title,clientId,tattoistId })
-  .then(appointmentDoc => res.json(appointmentDoc))
+  .then(appointmentDoc => {
+    console.log("appointmentDoc cote back", appointmentDoc)
+    res.json(appointmentDoc)
+  })
   .catch(err => next(err))
 })
 
