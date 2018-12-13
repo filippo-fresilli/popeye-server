@@ -61,6 +61,7 @@ router.post("/eventcreated/:tattoistId", (req, res, next) => {
   const { startDate, endDate, title } = req.body;
   const { tattoistId } = req.params;
   let clientId;
+  
   if (req.user.surname) {
     clientId = req.user._id;
   }
