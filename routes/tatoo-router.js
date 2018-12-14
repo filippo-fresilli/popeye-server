@@ -34,6 +34,18 @@ router.get("/tattoist/:id", (req, res, next) => {
     .catch(err => next(err));
 });
 
+
+router.get("/appointments/:id", (req, res, next) => {
+  const { id } = req.params;
+  
+  Appointment.find({tattoistId : id})
+    .then(tatooMakerResults => {
+      console.log(tatooMakerResults);
+      res.json(tatooMakerResults);
+    })
+    .catch(err => next(err));
+});
+
 router.post("/tattoistlist", (req, res, next) => {
   // TatooMaker.findById(id)
   //   .then(tatooMakerResults => {
