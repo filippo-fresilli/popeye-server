@@ -5,7 +5,7 @@ const tattoist = require("../models/tatoo-maker-model.js");
 
 mongoose
   .connect(
-    "mongodb://localhost/popeye-server",
+    process.env.MONGODB_URI,
     { useNewUrlParser: true }
   )
   .then(x => {

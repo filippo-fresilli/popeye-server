@@ -5,7 +5,7 @@ const appointment = require("../models/appointment-model.js");
 
 mongoose
   .connect(
-    "mongodb://localhost/popeye-server",
+    process.env.MONGODB_URI,
     { useNewUrlParser: true }
   )
   .then(x => {

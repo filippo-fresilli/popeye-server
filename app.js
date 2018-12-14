@@ -15,7 +15,7 @@ require("./config/passport-setup.js");
 
 mongoose
   .connect(
-    "mongodb://localhost/popeye-server",
+    process.env.MONGODB_URI,
     { useNewUrlParser: true }
   )
   .then(x => {
