@@ -30,10 +30,6 @@ const tatooMakerSchema = new Schema(
       type: String
     },
     // coordinate: [Number],
-    city: { 
-      type: String, 
-      required: true 
-    },
     appointement: [{
       type: Schema.Types.ObjectId,
       ref: "Appointment"
